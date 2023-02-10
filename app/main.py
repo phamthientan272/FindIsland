@@ -15,6 +15,6 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Program to count number of islands in a map.')
-    parser.add_argument("-f", "--file", type=str, help="Path to the file containing the map.", required=True)
+    parser.add_argument("file", type=str, help="Path to the file containing the map.")
     args = parser.parse_args()
     main(args)
