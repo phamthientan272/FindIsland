@@ -21,6 +21,18 @@ def test_read_map_from_file_returns_map_for_valid_input():
     # Clean up the sample input file
     os.remove("sample.txt")
 
+def test_read_map_from_file_returns_map_for_invalid_input():
+    # Create a sample input file
+    with open("sample.txt", "w") as f:
+        f.write("1 1 1\n")
+        f.write("a 3 1\n")
+
+    with pytest.raises(Exception) as excinfo:
+        map = read_map_from_file("sample.txt")
+    assert "Invalid character found" in str(excinfo.value)
+    # Clean up the sample input file
+    os.remove("sample.txt")
+
 def test_read_map_from_file_raises_exception_for_file_not_found():
     with pytest.raises(Exception) as excinfo:
         map = read_map_from_file("nonexistent.txt")
