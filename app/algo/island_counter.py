@@ -12,20 +12,20 @@ class Map:
         visited = [[False for j in range(self.__n_col)] for i in range(self.__n_row)]
         self.__count = 0
         
+        ### Have to increase the recursion limit for very large file
         default_recursion_limit = sys.getrecursionlimit()
         if self.__n_col * self.__n_row >= default_recursion_limit:
             limit = self.__n_col * self.__n_row * 4
         else:
             limit = default_recursion_limit * 2
-        print(f"the recursion limit is {limit}")
-           
+        
         with recursionlimit(limit):
             for i in range(self.__n_row):
                 for j in range(self.__n_col):
                     if visited[i][j] == False and self.__map[i][j] == 1:
                         self.__count += 1
                         # self.__dfs(i, j, visited)
-                        self.__bfs(i, j, visited)
+                        self.__bfs(i, j, visited)  ### bfs is better for very large file
             return self.__count 
         
         
